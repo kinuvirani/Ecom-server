@@ -1,0 +1,22 @@
+module.exports=(sequelize,type)=>{
+    return sequelize.define('rating',{
+        Id:{
+            type:type.INTEGER,
+            primaryKey:true,
+            autoIncrement:true,
+            allowNull:false
+        },
+        userId:{
+            type:type.UUID,
+            allowNull:false
+        },
+        productId:{
+            type:type.INTEGER,
+            allowNull:false
+        },
+        rating:{
+            type:type.FLOAT,
+            defaultValue:0
+        }
+    })
+}

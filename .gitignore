@@ -1,0 +1,11 @@
+# Dependencies
+node_modules
+
+# Build
+dist
+
+# environment
+.env
+.env.*
+!.env.sample
+
