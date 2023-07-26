@@ -1,16 +1,15 @@
-FROM node:18
+FROM node:14
 
-# Create app directory
+RUN mkdir /app
+
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json package-lock.json ./
 
 RUN npm install
-# If you are building your code for production
-# RUN npm ci --omit=dev
 
-# Bundle app source
 COPY . .
 
-EXPOSE 3000
-CMD ["node", "index.js"]
+EXPOSE 3030
+
+CMD ["node", "index.js"]
