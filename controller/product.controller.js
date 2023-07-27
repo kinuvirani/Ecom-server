@@ -281,7 +281,7 @@ exports.addOffer = (id, body, done) => {
             if (emailId !== null) {
               var temp = `<font size="3"><p>Hello ${emailId.dataValues.firstname},<br/> Product offer has been announced that you added in your cart.</p>
                     <br/>click below link to know more details<br/>
-                    <a href="http://localhost:3000/#home">http://localhost:3000/#home</a></font>`;
+                    <a href="http://99.79.62.126:3000/#home">http://99.79.62.126:3000/#home</a></font>`;
 
               var emailOptions = {
                 to: emailId.dataValues.email,
