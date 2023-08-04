@@ -1,0 +1,29 @@
+module.exports=(sequelize,type)=>{
+    return sequelize.define('Registeration',{
+        register_id:{
+            type:type.UUID,
+            defaultValue:type.UUIDV4,
+            allowNull:false,
+            primaryKey:true
+        },
+        email:type.STRING,
+        password:type.STRING,
+        firstname:type.STRING,
+        lastname:type.STRING,
+        mobileNo:type.STRING,
+        gender:type.STRING,
+        pincode:type.STRING,
+        locality:type.STRING,
+        address:type.STRING,
+        city:type.STRING,
+        state1:type.STRING,
+        role:{
+            type:type.STRING,
+            defaultValue:'User'
+        },
+        status:{
+            type:type.INTEGER,
+            defaultValue:1
+        }
+    })
+}

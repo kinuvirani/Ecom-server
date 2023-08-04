@@ -1,0 +1,19 @@
+module.exports=(sequelize,type)=>{
+    return sequelize.define('subCategory',{
+        subCategoryId:{
+            type:type.INTEGER,
+            primaryKey:true,
+            autoIncrement:true,
+            allowNull:false
+        },
+        categoryId:{
+            type:type.INTEGER,
+            allowNull:false
+        },
+        subCategoryName:type.STRING,
+        status:{
+            type:type.INTEGER,
+            defaultValue:1
+        }
+    })
+}
