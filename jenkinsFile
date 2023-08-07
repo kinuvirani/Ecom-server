@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_REGISTRY = 'index.docker.io/v1' // Replace with your Docker registry URL
+        DOCKER_REGISTRY = 'https://index.docker.io/v1' // Replace with your Docker registry URL
         IMAGE_NAME = 'vkiran12/flipkart-backend'       // Replace with your Docker image name
         TAG = 'testing-v1'                           // Replace with your desired tag/version
     }
