@@ -1,7 +1,6 @@
 pipeline {
     agent any
     environment {
-        DOCKER_REGISTRY = 'https://index.docker.io/v1' // Replace with your Docker registry URL
         IMAGE_NAME = 'vkiran12/flipkart-backend'       // Replace with your Docker image name
         TAG = 'testing-v1'                           // Replace with your desired tag/version
     }
@@ -15,10 +14,8 @@ pipeline {
 
         stage('Docker Login') {
           steps {
-            script {
-              docker.withRegistry("${DOCKER_REGISTRY}", 'docker-creds') {
-                docker.login()
-              }
+            withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+          sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
             }
           }
         }
