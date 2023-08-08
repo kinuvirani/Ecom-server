@@ -22,7 +22,7 @@ pipeline {
 
         stage('Docker Build') {
       steps {
-        sh 'docker build ${IMAGE_NAME}:${TAG} .'
+        sh 'docker buildx build ${IMAGE_NAME}:${TAG} .'
       }
         }
 
