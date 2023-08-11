@@ -12,23 +12,26 @@ pipeline {
           }
         }
 
-        stage('Docker Login') {
+        stage('Build') {
           steps {
             withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
           sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
             }
+            sh 'docker buildx build -t ${IMAGE_NAME}:${TAG} .'
+            sh 'docker push ${IMAGE_NAME}:${TAG}'
+            sh 'docker rmi ${IMAGE_NAME}:${TAG}'
           }
         }
 
-        stage('Docker Build') {
+        stage('Deploy') {
       steps {
-        sh 'docker buildx build -t ${IMAGE_NAME}:${TAG} .'
-      }
+        withCredentials([sshUserPrivateKey(credentialsId: 'sshUser', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {
+        remote.user = userName
+        remote.identityFile = identity
+        stage("SSH Steps Rocks!") {
+            sshCommand remote: remote, command: 'cd /home/ubuntu/flipkart-backend; echo "Inside Server"; bash deploy.sh;'
         }
-
-        stage('Docker Push') {
-      steps {
-        sh 'docker push ${IMAGE_NAME}:${TAG}'
+    }
       }
         }
     }
