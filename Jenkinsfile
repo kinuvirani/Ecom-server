@@ -26,11 +26,15 @@ pipeline {
         stage('Deploy') {
       steps {
         withCredentials([sshUserPrivateKey(credentialsId: 'sshUser', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {
-        remote.user = userName
-        remote.identityFile = identity
-        stage("SSH Steps Rocks!") {
-            sshCommand remote: remote, command: 'cd /home/ubuntu/flipkart-backend; echo "Inside Server"; bash deploy.sh;'
-        }
+           script {
+                        def remote = [:]
+                        remote.name = 'flkipkart-backend'  // Replace with a meaningful remote name
+                        remote.host = '99.79.62.126'
+                        remote.user = userName
+                        remote.identityFile = identity
+                        sshCommand remote: remote, command: 'cd /home/ubuntu/flipkart-backend; echo "Inside Server"; bash deploy.sh;'
+                    }
+        
     }
       }
         }
