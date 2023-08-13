@@ -38,8 +38,8 @@ pipeline {
                         sshCommand remote: remote, command: 'cd /home/ubuntu/flipkart-backend; echo "Inside Server"; bash deploy.sh;'
                     }
         
-    }
-      }
+          }
         }
-    }
+      }
+  }
 }
