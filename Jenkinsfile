@@ -23,12 +23,15 @@ pipeline {
           }
         }
 
-      stage('Deploy') {
-    agent {
-        sshagent(credentials: ['sshUser']) {
+        stage('Deploy') {
+      steps {
+        withCredentials([sshUserPrivateKey(credentialsId: 'sshUser', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {
+          sshagent(credentials: ['sshUser']) {
             sh 'cd /home/ubuntu/flipkart-backend; echo "Inside Server"; bash deploy.sh;'
+          }
+        
+          }
         }
-    }
-}
+      }
   }
 }
