@@ -25,6 +25,7 @@ pipeline {
 
         stage('Deploy') {
       steps {
+                script {
         def remote = [:]
         remote.name = 'devops-project'
         remote.host = '99.79.62.126'
@@ -33,7 +34,7 @@ pipeline {
         remote.identityFile = identity
         
             sshCommand remote: remote, command: 'cd /home/ubuntu/flipkart-backend; echo "Inside Server"; bash deploy.sh;'
-        
+        }
     }
       }
         }
