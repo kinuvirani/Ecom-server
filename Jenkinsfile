@@ -29,7 +29,7 @@ pipeline {
         def remote = [:]
         remote.name = 'devops-project'
         remote.host = '99.79.62.126'
-        remote.knownHost= '/var/jenkins_home/.ssh/known_hosts'
+        remote.knownHosts = '/var/jenkins_home/.ssh/known_hosts'
         withCredentials([sshUserPrivateKey(credentialsId: 'sshUser', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {
         remote.user = userName
         remote.identityFile = identity
