@@ -25,17 +25,6 @@ pipeline {
 
         stage('Deploy') {
       steps {
-      //    script {
-      //           def remote = [:]
-      //           remote.name = 'devops-project'
-      //           remote.host = '99.79.62.126'
-      //           remote.knownHosts = '/var/jenkins_home/.ssh/known_hosts'
-      //           remote.user = 'devops'
-      //               sshagent(credentials: ['devops-user-pass'], verbose: true) {
-      //                   sshCommand remote: remote, command: 'cd /home/ubuntu/flipkart-backend; echo "Inside Server"; bash deploy.sh;'
-      //               }
-      //           }
-      // }
           script {
             def remoteServer = [:]
         remoteServer.name = 'devops-project'
