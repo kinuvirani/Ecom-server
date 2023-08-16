@@ -42,6 +42,7 @@ pipeline {
                 remote.name = 'devops-project'
                 remote.host = '99.79.62.126'
                 remote.knownHosts = '/var/jenkins_home/.ssh/known_hosts'
+                remote.user = 'ubuntu'
                     sshagent(credentials: ['sshUser']) {
                         sshCommand remote: remote, command: 'cd /home/ubuntu/flipkart-backend; echo "Inside Server"; bash deploy.sh;'
                     }
