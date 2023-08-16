@@ -32,7 +32,7 @@ pipeline {
         remote.knownHosts = '/var/jenkins_home/.ssh/known_hosts'
         withCredentials([sshUserPrivateKey(credentialsId: 'sshUser', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {
         remote.user = userName
-        remote.identityFile = identity
+        remote.identityFile = credentials('sshUser')
         
             sshCommand remote: remote, command: 'cd /home/ubuntu/flipkart-backend; echo "Inside Server"; bash deploy.sh;'
         }
