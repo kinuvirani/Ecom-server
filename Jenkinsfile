@@ -47,7 +47,9 @@ pipeline {
         sshCommand remote: remoteServer, command: '''
           #!/bin/bash
           echo "Hello from remote server!"
+          whoami
           echo 'DevOps@1234' | sudo -S su ubuntu
+          whoami
           cd /home/ubuntu/flipkart-backend
           bash deploy.sh
           # Add your script commands here
