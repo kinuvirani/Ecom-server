@@ -44,7 +44,7 @@ pipeline {
         remoteServer.allowAnyHosts = true
         remoteServer.password = 'DevOps@1234'
 
-        sshCommand remoteServer: remoteServer, command: '''
+        sshCommand remote: remoteServer, command: '''
           #!/bin/bash
           echo "Hello from remote server!"
           cd /home/ubuntu/flipkart-backend
