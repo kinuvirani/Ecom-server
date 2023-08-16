@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-        IMAGE_NAME = 'vkiran12/flipkart-backend' 
-        TAG = 'testing-v1'
+        IMAGE_NAME = 'vkiran12/flipkart-backend'       // Replace with your Docker image name
+        TAG = 'v1'                           // Replace with your desired tag/version
     }
 
     stages {
@@ -25,13 +25,23 @@ pipeline {
 
         stage('Deploy') {
       steps {
-        withCredentials([sshUserPrivateKey(credentialsId: 'sshUser', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {
-          sshagent(credentials: ['sshUser']) {
-            sh 'cd /home/ubuntu/flipkart-backend; echo "Inside Server"; bash deploy.sh;'
+          script {
+            def remoteServer = [:]
+        remoteServer.name = 'devops-project'
+        remoteServer.host = '99.79.62.126'
+        remoteServer.user = 'devops'
+        remoteServer.allowAnyHosts = true
+        remoteServer.password = 'DevOps@1234'
+
+        sshCommand remote: remoteServer, command: '''
+          #!/bin/bash
+          echo "Hello from remote server!"
+          cd /home/ubuntu/flipkart-backend
+          bash deploy.sh
+          # Add your script commands here
+        '''
           }
-        
           }
         }
      }
   }
-}
