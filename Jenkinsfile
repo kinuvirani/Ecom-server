@@ -1,9 +1,7 @@
 pipeline {
     agent any
-    agent {
-        docker {
-            image 'node:14' // Use the appropriate Node.js version
-        }
+    tools {
+        nodejs 'NodeJS'
     }
     environment {
         IMAGE_NAME = 'vkiran12/flipkart-backend'       // Replace with your Docker image name
