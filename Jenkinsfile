@@ -23,6 +23,15 @@ pipeline {
           }
         }
 
+        
+        stage('Test') {
+            steps {
+                sh 'npm install' // Install dependencies if not done already
+                sh 'npm test'    // Run the test script defined in package.json
+            }
+        }
+
+
         stage('Deploy') {
       steps {
           script {
