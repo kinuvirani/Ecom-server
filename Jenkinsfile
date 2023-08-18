@@ -5,6 +5,8 @@ pipeline {
         TAG = 'v1'                           // Replace with your desired tag/version
     }
 
+    tools {nodejs "nodejs"}
+
     stages {
         stage('Checkout') {
           steps {
