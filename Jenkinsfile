@@ -5,12 +5,14 @@ pipeline {
         TAG = 'v1'                           // Replace with your desired tag/version
     }
 
+
     stages {
         stage('Checkout') {
           steps {
             checkout scm
           }
         }
+
 
         stage('Build') {
           steps {
