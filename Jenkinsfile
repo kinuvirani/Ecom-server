@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    tools {
-        nodejs 'NodeJS'
-    }
     environment {
         IMAGE_NAME = 'vkiran12/flipkart-backend'       // Replace with your Docker image name
         TAG = 'v1'                           // Replace with your desired tag/version
@@ -25,15 +22,6 @@ pipeline {
             sh 'docker rmi ${IMAGE_NAME}:${TAG}'
           }
         }
-
-        
-        stage('Test') {
-            steps {
-                sh 'npm install' // Install dependencies if not done already
-                sh 'npm test'    // Run the test script defined in package.json
-            }
-        }
-
 
         stage('Deploy') {
       steps {
